@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <%- include('header'); %>
+<body>
+
+    <div>
+        <div class="container">
+            <div class="row margin">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h1 class="text-center">Письмо было отправлено</h1>
+                        <h1 class="text-center">Перенаправляю на главную...</h1>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        setTimeout(function() {
+        window.location = "/";
+        }, 3000)
+    </script>
+
+</body>
+<%- include('footer'); %>
+</html>

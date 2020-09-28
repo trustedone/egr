@@ -5,6 +5,7 @@ const ejs = require('ejs');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 // Create DB connection
 var mongoDB = 'mongodb://localhost:27017/yes';
@@ -78,3 +79,46 @@ app.get('/products', function (req, res) {
       res.render('page-detail-product', {details : details, title : "productpage"});
     });      
     });
+
+  app.post('/contact', function (req, res) {
+      const output = `
+      <p>You have a new contact request from egr.kz</p>
+      <h3>Contact Details</h3>
+      <ul>  
+        <li>Name: ${req.body.name}</li>
+        <li>Email: ${req.body.email}</li>
+        <li>Telephone: ${req.body.tel}</li>
+      </ul>`;
+    
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+          host: 'mail20.mymailcheap.com',
+          port: 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+              user: 'info@electrogroup.kz', // generated ethereal user
+              pass: 'Electro@2019'  // generated ethereal password
+          },
+          tls:{
+            rejectUnauthorized:false
+          }
+        });
+    
+      let mailOptions = {
+        from: 'info@electrogroup.kz', // sender address
+        to: 'info@electrogroup.kz', // list of receivers
+        subject: 'New mail from website egr.kz', // Subject line
+        html: output // html body
+      };
+    
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);   
+    
+        res.render('contact', {msg:'Заявка Отправлена', title:'Заявка в Egr.kz'});
+        console.log(req.body);
+     })
+});
