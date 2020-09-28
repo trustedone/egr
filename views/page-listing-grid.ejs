@@ -1,0 +1,176 @@
+<%- include('header'); %>
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+
+
+<!-- ============================  FILTER TOP  ================================= -->
+<div class="card mb-3">
+	<div class="card-body">
+<div class="row">
+	<div class="col-md-2"> Вы здесь: </div> <!-- col.// -->
+	<nav class="col-md-8"> 
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Главная</a></li>
+			<li class="breadcrumb-item"><a href="/products">Все товары</a></li>
+			<%if (parseInt(page)) { %>
+				<li class="breadcrumb-item"><a href="/products?page=<%=parseInt(page) %>">Страница <%=parseInt(page) %></a></li>
+			<%} else{ %><% } %>				
+		</ol>
+	</nav> <!-- col.// -->
+</div> <!-- row.// -->
+<hr>
+<div class="row">
+	<div class="col-md-2">Фильтр</div> <!-- col.// -->
+	<div class="col-md-10"> 
+		<ul class="list-inline">
+	      <li class="list-inline-item mr-3 dropdown">
+	      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">  Страна производителя </a>
+            <div class="dropdown-menu p-3">	
+		      <label class="form-check"> 	 <input type="checkbox" class="form-check-input"> Китай    </label>
+		      <label class="form-check">   	 <input type="checkbox" class="form-check-input"> Россия      </label>
+		      <label class="form-check">    <input type="checkbox" class="form-check-input"> Европа  </label>
+		      <label class="form-check">  <input type="checkbox" class="form-check-input"> США  </label>
+            </div> <!-- dropdown-menu.// -->
+	      </li>
+		  <li class="list-inline-item mr-3"><a href="#">Цвет</a></li>
+		  <li class="list-inline-item mr-3"><a href="#">Размер</a></li>
+		  <li class="list-inline-item mr-3">
+		  	<div class="form-inline">
+		  		<label class="mr-2">Цена</label>
+				<input class="form-control form-control-sm" placeholder="Мин" type="number">
+					<span class="px-2"> - </span>
+				<input class="form-control form-control-sm" placeholder="Макс" type="number">
+				<button type="submit" class="btn btn-sm btn-light ml-2">Ок</button>
+			</div>
+		  </li>
+		  <li class="list-inline-item mr-3">
+		  	<label class="custom-control mt-1 custom-checkbox">
+			  <input type="checkbox" class="custom-control-input">
+			  <div class="custom-control-label">В наличии
+			  </div>
+			</label>
+		  </li>
+		</ul>
+	</div> <!-- col.// -->
+</div> <!-- row.// -->
+	</div> <!-- card-body .// -->
+</div> <!-- card.// -->
+<!-- ============================ FILTER TOP END.// ================================= -->
+
+<header class="mb-3">
+	<div class="form-inline">
+		<strong class="mr-md-auto"></strong>
+		<select class="mr-2 form-control">
+			<option>Новое сначало</option>
+			<option>Популярное сначало</option>
+			<option>Самое дешевое сначало</option>
+		</select>
+	</div>
+</header><!-- sect-heading -->
+<nav class="mb-4" aria-label="Page navigation sample">
+	<ul class="pagination">
+	  <% if(page > 3){ %>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-1 %>">Previous</a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-1 %>"><%=parseInt(page)-2 %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-2 %>"><%=parseInt(page)-1 %></a></li>
+	  <li class="page-item active"><a class="page-link active" href="/products?page=<%=parseInt(page) %>"><%=parseInt(page) %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>"><%=parseInt(page)+1 %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+2 %>"><%=parseInt(page)+2 %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>">Next</a></li>
+	  <% } %> 
+	  <% if(page === undefined){ %>
+		<li class="page-item "><a class="page-link active" href="/products?page=1">1</a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=2">2</a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=3">3</a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=1">Next</a></li>
+	  <% } %> 
+	  <% if(page != undefined && page < 4){ %>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-1 %>">Previous</a></li>
+		<li class="page-item active"><a class="page-link active" href="/products?page=<%=parseInt(page) %>"><%=parseInt(page) %></a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>"><%=parseInt(page)+1 %></a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+2 %>"><%=parseInt(page)+2 %></a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>">Next</a></li>
+	  <% } %> 
+	</ul>
+</nav>
+<div class="row">
+	<% products.forEach(function(products) { %>
+	<div class="col-md-3">
+		<figure class="card card-product-grid">
+			<div class="img-wrap"> 
+				<span class="badge badge-danger"> NEW </span>
+				<%if (products.Images[0]) { %>
+					<img src="/images/products/<%= products.Images[0] %>">
+				<%} else{ %>
+					<img src="/images/no-img.jpg">
+				<% } %>		
+			</div> <!-- img-wrap.// -->
+			<figcaption class="info-wrap">
+					<a href="/products/view/<%= products._id %>" class="title mb-2"><%= products.Name %></a>
+
+					
+					<p class="mb-2"><%= products.Packing %> ШТ <small class="text-muted">в комплекте</small></p>
+					<p class="mb-2"><small class="text-muted">Категория: <%= products.Cat %> </small></p>
+					<p class="mb-2"><small class="text-muted">Партномер: <%= products.PartNum %> </small></p>
+					<p class="mb-2"><small class="text-muted">Штучный заказ: <%= products.Partial %> </small></p>
+					<p class="mb-2"><small class="text-muted">ID: <%= products._id %> </small></p>
+					<hr>
+					
+					<p class="mb-3">
+						<span class="tag"> <i class="fa fa-check"></i> <%= products.Brand %></span> 
+					</p>
+				
+
+
+					<a href="/products/view/<%= products._id %>" class="btn btn-outline-primary">  Подробнее </a>	
+					
+			</figcaption>
+		</figure>
+	</div> <!-- col.// -->
+	
+	<% }); %>
+</div> <!-- row end.// -->
+
+<nav class="mb-4" aria-label="Page navigation sample">
+	<ul class="pagination">
+	  <% if(page > 3){ %>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-1 %>">Previous</a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-1 %>"><%=parseInt(page)-2 %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-2 %>"><%=parseInt(page)-1 %></a></li>
+	  <li class="page-item active"><a class="page-link active" href="/products?page=<%=parseInt(page) %>"><%=parseInt(page) %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>"><%=parseInt(page)+1 %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+2 %>"><%=parseInt(page)+2 %></a></li>
+	  <li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>">Next</a></li>
+	  <% } %> 
+	  <% if(page === undefined){ %>
+		<li class="page-item "><a class="page-link active" href="/products?page=1">1</a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=2">2</a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=3">3</a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=1">Next</a></li>
+	  <% } %> 
+	  <% if(page != undefined && page < 4){ %>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)-1 %>">Previous</a></li>
+		<li class="page-item active"><a class="page-link active" href="/products?page=<%=parseInt(page) %>"><%=parseInt(page) %></a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>"><%=parseInt(page)+1 %></a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+2 %>"><%=parseInt(page)+2 %></a></li>
+		<li class="page-item"><a class="page-link" href="/products?page=<%=parseInt(page)+1 %>">Next</a></li>
+	  <% } %> 
+	</ul>
+</nav>
+
+
+<div class="box text-center">
+	<p>Вы нашли что искали？</p>
+	<a href="" class="btn btn-light">Да</a>
+	<a href="" class="btn btn-light">Нет</a>
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+<%- include ('footer'); %>
