@@ -4,7 +4,7 @@
   <div class="container">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная</a></li>
-        <li class="breadcrumb-item"><a href="#"><%= details.Brand %></a></li>
+        <li class="breadcrumb-item"><a href="/products/brand/<%= details.Brand %>"><%= details.Brand %></a></li>
         <li class="breadcrumb-item"><a href="/products/cat/<%= details.Cat %>"><%= details.Cat %></a></li>
         <li class="breadcrumb-item active" aria-current="page"><%= details.Name %></li>
     </ol>
@@ -31,30 +31,36 @@
 
 <h2 class="title mt-3"><%= details.Name %></h2>
 
-<div class="rating-wrap my-3">
-	<ul class="rating-stars">
-		<li style="width:80%" class="stars-active"> 
-			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-			<i class="fa fa-star"></i> 
-		</li>
-		<li>
-			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-			<i class="fa fa-star"></i> 
-		</li>
-	</ul>
-	<small class="label-rating text-muted">132 reviews</small>
-	<small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
-</div> <!-- rating-wrap.// -->
 
 <div class="mb-3"> 
-	<var class="price h4">Цену Уточняйте &#8376;</var> 
-	<span class="text-muted">incl. VAT</span> 
+	<var class="price h4">Цену Уточняйте по контактам:</var> 
+	
+	
 </div> <!-- price-detail-wrap .// -->
-
-<p></p>
-
+<div class="row contact-product"> 
+<div class="no-gutter1">
+	<p class="margin-1">
+	<a href="https://wa.me/+77715452205" class="widget-view">
+		<button type="button" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Whatsapp</button>
+	</a>
+	</p>
+</div>
+<div class="no-gutter1">
+	<a href="https://t.me/jjlogic" class="widget-view">
+		<button type="button" class="btn btn-primary"><i class="fab fa-telegram"></i> Telegram</button>
+	</a>
+</div>
+<div class="no-gutter1">
+	<a href="#" class="widget-view">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone-square"></i> Отправить Запрос</button>
+	</a>
+</div>
+<div class="no-gutter1">
+	<a href="tel:+77715452205" class="widget-view">
+		<button type="button" class="btn btn-primary"><i class="fa fa-phone-square"></i> +7-771-5452205</button>
+	</a>
+</div>
+</div>
 
 <dl class="row">
   <dt class="col-sm-3">ID</dt>
@@ -80,27 +86,6 @@
 
 </dl>
 
-	<div class="form-row  mt-4">
-		<div class="form-group col-md flex-grow-0">
-			<div class="input-group mb-3 input-spinner">
-			  <div class="input-group-prepend">
-			    <button class="btn btn-light" type="button" id="button-plus"> + </button>
-			  </div>
-			  <input type="text" class="form-control" value="1">
-			  <div class="input-group-append">
-			    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-			  </div>
-			</div>
-		</div> <!-- col.// -->
-		<div class="form-group col-md">
-			<a href="#"  class="btn  btn-primary"> 
-				<i class="fas fa-shopping-cart"></i> <span class="text">Добавить в корзину</span> 
-			</a>
-			<a href="#" class="btn btn-light">
-        <i class="fas fa-envelope"></i> <span class="text">Связаться с Нами</span> 
-			</a>
-		</div> <!-- col.// -->
-	</div> <!-- row.// -->
 
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
